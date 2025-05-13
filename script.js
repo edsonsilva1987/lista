@@ -18,10 +18,6 @@ let currentIndex = 0;
     carousel.innerHTML = '';
     if (registros.length > 0) {
       const item = registros[currentIndex];
-      if (item.idade > 0 && item.idade < 110) {
-        alert("Idade inválida. Digite um valor entre 0 e 110.");
-        return;
-      }
       const div = document.createElement('div');
       div.classList.add('carousel-item');
       div.innerHTML = `
