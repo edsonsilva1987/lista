@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo.css" media="screen" />
+    <title>Lista</title>
+</head>
+<body>
+    <h1 style="margin: 20px;
+    color: brown;">Lista de cadastro de pessoas</h1>
+      <div class="carousel-container">
+    <div class="carousel">
+       <p style="margin-left: 45%; margin-top: 10%; color: #3d3737;">sem registro...</p>
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+<div class="form-container">
+    <h2>Novo Registro</h2>
+    <form id="form" class="form">
+            <input type="text" id="nome" placeholder="Nome" required>
+        <input type="tel" id="telefone" placeholder="Telefone" required>
+        <input type="number" id="idade" placeholder="Idade" required>
+        <button type="submit">Adicionar</button>
+    </form>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
