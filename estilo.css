@@ -11,14 +11,14 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
  background: linear-gradient(to right, #e0f7fa, #e8f5e9);
 
 }
 
 .carousel-container {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 60%;
   background-color: #e0c9c9;
   border-radius: 10px;
@@ -31,31 +31,50 @@ body {
   display: flex;
   transition: transform 0.5s ease;
   color: chocolate;
+  justify-content: center;
+  height: 15em;
+
 }
 
 .carousel-item {
   width: 80%;
-  padding: 10px;
+  padding-top: 19px;
   text-align: center;
-  color: #218838;
-  font-size: 150%;
+  color:  rgba(15, 221, 228, 0.719);
+  font-size: 1.7rem;
   font-family:Arial, Helvetica, sans-serif;
- justify-content: space-between;
+  justify-content: space-between;
 }
+@media (max-width: 768px) {
+  .carousel-item {
+    width: 50%;
+    justify-items: center;
+  }
+  .carousel-container {
+  width: 100%;
 
+  }
+  .carousel {
+  display: flexbox;
+  justify-content: center;
+  height: 15em;
+  font-size: 15px;
+  margin-bottom: 150px;
+}
+}
 
 button {
   position: absolute;
   top: 70%;
   transform: translateY(-50%);
-  background-color: rgba(228, 15, 15, 0.719);
+  background-color: rgba(15, 221, 228, 0.719);
   color: white;
   border: none;
   font-size: 15px;
   border-radius: 10%;
   z-index: 10;
    width: 5rem;
-  height: 70px;margin-top: 20px;
+  height: 70px;
 
 }
 
@@ -95,16 +114,17 @@ input {
 
 button[type="submit"] {
   background-color: #28a745;
-  color: white;
+  color: rgb(255, 255, 255);
   border-radius: 5px;
   cursor: pointer;
   margin-top: 25%;
-
+  width: 11em;
+  height: 3em;
   position:relative;
 
 }
 
 button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #096b1e;
 }
 
