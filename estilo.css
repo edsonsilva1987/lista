@@ -1,130 +1,181 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
- background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-
+*{
+  margin: 0 auto;
+  padding: 0 auto;
+  
 }
 
 .carousel-container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 90%;
   position: relative;
-  width: 70%;
-  height: 60%;
-  background-color: #e0c9c9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: auto;
-  margin-bottom: 20px;
+
 }
 
 .carousel {
   display: flex;
-  transition: transform 0.5s ease;
-  color: chocolate;
-  justify-content: center;
-  height: 15em;
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory;
+  padding-right: 15px;
+  background-color: #474343;
+  border-radius: 5px;
+  width: 100%;
+  height: 200px;
+}
 
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .carousel-item {
-  width: 80%;
-  padding-top: 19px;
-  text-align: center;
-  color:  rgba(15, 221, 228, 0.719);
-  font-size: 1.7rem;
-  font-family:Arial, Helvetica, sans-serif;
-  justify-content: space-between;
-}
-@media (max-width: 768px) {
-  .carousel-item {
-    width: 50%;
-    justify-items: center;
-  }
-  .carousel-container {
+  display: flex;
+  padding: 10px;
+  flex-shrink: 0;
   width: 100%;
+  align-items: center;
+  font-size: 30px;
+  justify-content: space-around;
+  border: 1px solid #eee;
+  background-color: #a1d7e7;
+  border-radius: 3px;
+  scroll-snap-align: start;
+}
+@media only screen and (max-width: 500px){
+  .carousel-item{
+    display: block;
+    padding: 20px;
+      background-color: #477886;
+      font-size: 15px;
+  }
+  .carousel-container{
+    margin-top: 20px;
+    width: 99%;
+  }
+  .carousel{
+    width: 100%;
 
   }
-  .carousel {
-  display: flexbox;
-  justify-content: center;
-  height: 15em;
-  font-size: 15px;
-  margin-bottom: 150px;
+  form input[type="text"],
+form input[type="tel"],
+form input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 50%;
 }
+  
+
 }
 
-button {
+
+.carousel-item button {
+  background-color: #e47f89;
+  color: rgb(236, 230, 230);
+  border: none;
+  padding: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.carousel-item button:hover {
+  background-color: #c82333;
+}
+
+.carousel-control {
+  background-color: #1d78da;
+  color: white;
+  padding:  5px;
+  border-radius: 5px;
+  font-size: 1em;
   position: absolute;
-  top: 70%;
+  top: 85%;
   transform: translateY(-50%);
-  background-color: rgba(15, 221, 228, 0.719);
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+form{
+  margin-bottom: 10px;
+  padding: 15px;
+  background: linear-gradient(to bottom, white, gray);
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+form button[type="submit"] {
+  background-color: #042a53;
   color: white;
   border: none;
-  font-size: 15px;
-  border-radius: 10%;
-  z-index: 10;
-   width: 5rem;
-  height: 70px;
-
-}
-
-.prev {
-  background-color: #3da35b;
-  left: 10px;
-  width: 70px;
-  height: 60px;
-}
-
-.next {
-
-  background-color: #3da35b;
-  right: 10px;
-  width: 70px;
-  height: 60px;
-}
-
-.form-container {
-  text-align: center;
-}
-
-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-input {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button[type="submit"] {
-  background-color: #28a745;
-  color: rgb(255, 255, 255);
-  border-radius: 5px;
+  padding:15px;
+  border-radius: 3px;
   cursor: pointer;
-  margin-top: 25%;
-  width: 13em;
-  height: 3em;
-  position:relative;
+  font-size: 1em;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0471e6;
+}
+
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+button:first-of-type {
+  background-color: #042a53;
+  color: white;
+  border-radius: 5px;
+  padding-right: 10px;
 
 }
 
-button[type="submit"]:hover {
-  background-color: #096b1e;
+button:first-of-type:hover {
+  background-color: #0056b3;
+  width: 60px;
 }
 
+button:nth-of-type(2) {
+  background-color: #042a53;
+  color: white;
+}
+
+button:nth-of-type(2):hover {
+  background-color: #0056b3;
+  width: 60px;
+}
