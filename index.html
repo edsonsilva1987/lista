@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="estilo.css" media="screen" />
-    <title>Lista</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cadastro usuario</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <h1 style="margin: 20px;
-    color: brown;">Lista de cadastro de pessoas</h1>
-      <div class="carousel-container">
-    <div class="carousel">
-       <p style="margin-left: 45%; margin-top: 10%; color: #3d3737;">sem registro...</p>
+  <div class="carousel-container">
+  <button onclick="prevSlide()" class="carousel-control prev"> < < < </button>
+  <div class="carousel">
     </div>
-    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="next" onclick="moveSlide(1)">&#10095;</button>
-</div>
-<div class="form-container">
-    <h2>Novo Registro</h2>
-    <form id="form" class="form">
-            <input type="text" id="nome" placeholder="Nome" required>
-        <input type="tel" id="telefone" placeholder="Telefone" required>
-        <input type="number" id="idade" placeholder="Idade" required>
-        <button type="submit">Adicionar</button>
-    </form>
+  <button onclick="nextSlide()" class="carousel-control next"> > > > </button>
 </div>
 
-  <script src="script.js"></script>
+<h2>Novo Registro</h2>
+<form id="form">
+  <div>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
+  </div>
+  <div>
+    <label for="telefone">Telefone:</label>
+    <input type="tel" id="telefone" required>
+  </div>
+  <div>
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade" required>
+  </div>
+  <button type="submit" >Salvar</button>
+</form>
+
+<script src="script.js"></script>
 </body>
 </html>
