@@ -22,11 +22,12 @@ class CarouselRegistro {
     this.carousel.innerHTML = '';
     if (this.registros.length > 0) {
       const item = this.registros[this.currentIndex];
+      const formattedTelefone = this.formatarTelefoneParaDisplay(item.telefone); // Formata o telefone
       const div = document.createElement('div');
       div.classList.add('carousel-item');
       div.innerHTML = `
           <p><strong>Nome:</strong> ${item.nome}</p>
-          <p><strong>Telefone:</strong> ${item.telefone}</p>
+          <p><strong>Telefone:</strong> ${formattedTelefone}</p>
           <p><strong>Idade:</strong> ${item.idade} anos</p>
           <button onclick="carouselRegistro.deleteItem(${this.currentIndex})">Excluir</button>
       `;
@@ -37,6 +38,26 @@ class CarouselRegistro {
       emptyMessage.innerHTML = '<p>Nenhum registro cadastrado.</p>';
       this.carousel.appendChild(emptyMessage);
     }
+  }
+
+  formatarTelefoneParaDisplay(numero) {
+    let formattedNumber = '';
+    const cleanedNumber = numero.replace(/\D/g, ''); // Remove não dígitos
+
+    if (cleanedNumber.length >= 2) {
+      formattedNumber += '(' + cleanedNumber.substring(0, 2) + ')';
+      if (cleanedNumber.length > 2) {
+        formattedNumber += ' ';
+        if (cleanedNumber.length > 7) {
+          formattedNumber += cleanedNumber.substring(2, 7) + '-' + cleanedNumber.substring(7, 11);
+        } else {
+          formattedNumber += cleanedNumber.substring(2);
+        }
+      }
+    } else {
+      formattedNumber = cleanedNumber;
+    }
+    return formattedNumber;
   }
 
   deleteItem(index) {
@@ -57,7 +78,7 @@ class CarouselRegistro {
     const idade = this.idadeInput.value.trim();
 
     if (nome && telefone && idade) {
-      this.registros.push({ nome, telefone, idade: parseInt(idade) });
+      this.registros.unshift({ nome, telefone, idade: parseInt(idade) });
       localStorage.setItem('registros', JSON.stringify(this.registros));
       this.nomeInput.value = '';
       this.telefoneInput.value = '';
@@ -70,6 +91,8 @@ class CarouselRegistro {
 
   setupEventListeners() {
     this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    this.nomeInput.addEventListener('input', () => primeiraMaiuscula(this.nomeInput));
+    this.telefoneInput.addEventListener('input', () => formatarTelefone(this.telefoneInput));
   }
 }
 
@@ -82,6 +105,7 @@ function nextSlide() {
 function prevSlide() {
   carouselRegistro.moveSlide(-1);
 }
+
 function formatarTelefone(input) {
   let numero = input.value.replace(/\D/g, '');
   let formattedNumber = '';
@@ -102,10 +126,6 @@ function formatarTelefone(input) {
   input.value = formattedNumber;
 }
 
-const telefoneInput = document.getElementById('telefone');
-telefoneInput.addEventListener('input', function() {
-  formatarTelefone(this);
-});
 function primeiraMaiuscula(input) {
   input.value = input.value
     .toLowerCase()
@@ -113,8 +133,3 @@ function primeiraMaiuscula(input) {
     .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1))
     .join(' ');
 }
-
-const nomeInput = document.getElementById('nome');
-nomeInput.addEventListener('input', function() {
-  primeiraMaiuscula(this);
-});
