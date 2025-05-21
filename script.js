@@ -7,6 +7,8 @@ class CarouselRegistro {
     this.idadeInput = document.getElementById(idadeId);
     this.registros = JSON.parse(localStorage.getItem('registros')) || [];
     this.currentIndex = 0;
+    this.editingIndex = undefined; // Adicionado para rastrear o item sendo editado
+    this.botaoSalvar = this.form.querySelector('button[type="submit"]'); // Obtém o botão Salvar
 
     this.renderCarousel();
     this.setupEventListeners();
@@ -22,13 +24,14 @@ class CarouselRegistro {
     this.carousel.innerHTML = '';
     if (this.registros.length > 0) {
       const item = this.registros[this.currentIndex];
-      const formattedTelefone = this.formatarTelefoneParaDisplay(item.telefone); // Formata o telefone
+      const formattedTelefone = this.formatarTelefoneParaDisplay(item.telefone);
       const div = document.createElement('div');
       div.classList.add('carousel-item');
       div.innerHTML = `
           <p><strong>Nome:</strong> ${item.nome}</p>
           <p><strong>Telefone:</strong> ${formattedTelefone}</p>
           <p><strong>Idade:</strong> ${item.idade} anos</p>
+          <button onclick="carouselRegistro.editItem(${this.currentIndex})">Editar</button>
           <button onclick="carouselRegistro.deleteItem(${this.currentIndex})">Excluir</button>
       `;
       this.carousel.appendChild(div);
@@ -42,7 +45,7 @@ class CarouselRegistro {
 
   formatarTelefoneParaDisplay(numero) {
     let formattedNumber = '';
-    const cleanedNumber = numero.replace(/\D/g, ''); // Remove não dígitos
+    const cleanedNumber = numero.replace(/\D/g, '');
 
     if (cleanedNumber.length >= 2) {
       formattedNumber += '(' + cleanedNumber.substring(0, 2) + ')';
@@ -58,6 +61,15 @@ class CarouselRegistro {
       formattedNumber = cleanedNumber;
     }
     return formattedNumber;
+  }
+
+  editItem(index) {
+    const itemToEdit = this.registros[index];
+    this.nomeInput.value = itemToEdit.nome;
+    this.telefoneInput.value = itemToEdit.telefone;
+    this.idadeInput.value = itemToEdit.idade;
+    this.editingIndex = index;
+    this.botaoSalvar.textContent = 'Atualizar'; // Muda o texto do botão para indicar edição
   }
 
   deleteItem(index) {
@@ -78,8 +90,18 @@ class CarouselRegistro {
     const idade = this.idadeInput.value.trim();
 
     if (nome && telefone && idade) {
-      this.registros.unshift({ nome, telefone, idade: parseInt(idade) });
-      localStorage.setItem('registros', JSON.stringify(this.registros));
+      if (this.editingIndex !== undefined) {
+        // Atualiza um registro existente
+        this.registros[this.editingIndex] = { nome, telefone, idade: parseInt(idade) };
+        localStorage.setItem('registros', JSON.stringify(this.registros));
+        delete this.editingIndex; // Limpa o índice de edição
+        this.botaoSalvar.textContent = 'Salvar'; // Restaura o texto do botão
+      } else {
+        // Adiciona um novo registro
+        this.registros.unshift({ nome, telefone, idade: parseInt(idade) });
+        localStorage.setItem('registros', JSON.stringify(this.registros));
+        this.currentIndex = 0;
+      }
       this.nomeInput.value = '';
       this.telefoneInput.value = '';
       this.idadeInput.value = '';
