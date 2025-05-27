@@ -43,7 +43,7 @@
   scroll-snap-align: start;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 508px) {
   .carousel {
     background-color: #477886;
   }
