@@ -95,6 +95,9 @@
     box-sizing: border-box;
     width: 50%;
   }
+  form {
+  width: 100%;
+}
 }
 
 .carousel-item button {
